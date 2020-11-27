@@ -73,3 +73,255 @@
 
 - [ ] Use the dot operator to access `static` members, but remember that using a reference variable with the dot operator is really a  syntax trick, and the compiler will substitute the class name for the reference variable
 - [ ] `static` methods cannot be overridden, but they can be redefined
+
+### Test
+
+##### Q1
+
+```java
+class Clidder {
+    private final void flipper() {
+        System.out.println("Clidder");
+    }
+}
+public class OCJP extends Clidder {
+    public final void flipper() {
+        System.out.println("Clidlet");
+    }
+    public static void main (String[] args) {
+        new OCJP().flipper();
+    }
+}
+```
+
+What is the result?
+
+A: 
+
+```
+Childlet
+```
+
+Although a final method cannot be overridden, in this case, the method is private and, therefore, hidden. The effect is that a new, accessible method *flipper*() is created.
+
+If the modifier of  *flipper*()  in class *Clidder* was changed into `public`, then the compilation would fail.
+
+##### Q2
+
+```java
+class Bird {
+    { System.out.println("b1 "); }
+    public Bird() { System.out.println("b2 "); }
+}
+
+class Raptor extends Bird {
+    static { System.out.println("r1 "); }
+    public Raptor() { System.out.println("r2 "); }
+    { System.out.println("r3 "); }
+    static { System.out.println("r4 "); }
+}
+
+class Hawk extends Raptor {
+    public static void main (String[] args) {
+        System.out.println("pre ");
+        new Hawk();
+        System.out.println("hawk ");
+    }
+}
+```
+
+What is the result?
+
+A: 
+
+```
+r1 r4 pre b1 b2 r3 r2 hawk
+```
+
+##### Q3
+
+```java
+class X { void do1() { } }
+
+class Y extends X { void do2() { } }
+
+class Chrome {
+    public static void main(String[] args) {
+        X x1 = new X ();
+        X x2 = new Y ();
+        Y y1 = new Y ();
+        // insert code here
+    }
+```
+
+Which of the following will compile?
+
+```
+A. x2.do2();
+```
+
+```
+B. (Y)x2.do2();
+```
+
+```
+C. ((Y)x2.do2());
+```
+
+```
+D. None of the above statements will compile
+```
+
+A: C
+
+Before you can invoke *Y*'s *do2()* method, you have to cast *x2* to be of type *X*.
+
+B looks like a proper cast, but without the second set of parentheses, the compiler think it's an incomplete statement.
+
+##### Q4
+
+```java
+class Dog {
+    public void bark() { System.out.println("woof "); }
+}
+
+class Hound extends Dog {
+    public void sniff() {
+        System.out.println("sniff ");
+    }
+    public void bark() {
+        System.out.println("howl ");
+    }
+}
+
+class DogShow {
+    public static void main(String[] args) { new DogShow().go(); }
+    void go() {
+        new Hound().bark();
+        ((Dog) new Hound()).bark();
+        ((Dog) new Hound()).sniff(); // line 19
+    }
+}
+```
+
+What is the result?
+
+A:  Compilation fails with an error at line 19
+
+Class *Dog* doesn't have a *sniff()* method. If line 19 is commented, the output will be: 
+
+```
+howl
+howl
+```
+
+##### Q5
+
+```java
+class Tree { }
+
+class Redwood extends Tree {
+    public static void main(String[] args) { new Redwood().go(); }
+    void go() {
+        go2(new Tree(), new Redwood());
+        go2((Redwood) new Tree(), new Redwood());
+    }
+    void go2(Tree t1, Redwood r1) {
+        Redwood r2 = (Redwood)t1;
+        Tree t2 = (Tree)r1;
+    }
+}
+```
+
+What is the result?
+
+A: An exception is thrown at runtime
+
+```
+java.lang.ClassCastException: Tree cannot be cast to Redwood
+```
+
+The code would work if it's like this: 
+
+```java
+class Tree { }
+
+class Redwood extends Tree {
+    public static void main(String[] args) { new Redwood().go(); }
+    void go() {
+        go2(new Tree(), new Redwood());
+        //go2((Redwood) new Tree(), new Redwood());
+    }
+    void go2(Tree t1, Redwood r1) {
+        
+        // false
+        if (t1 instanceof Redwood){
+            Redwood r2 = (Redwood)t1;
+        }
+        //Redwood r2 = (Redwood)t1;
+        Tree t2 = (Tree)r1;
+    }
+}
+```
+
+##### Q6
+
+```java
+interface MyInterface {
+    default int doStuff() {
+        return 0;
+    }
+}
+
+class IfaceTest implements MyInterface {
+    public static void main (String[] args) {
+        new IfaceTest().go();
+    }
+
+    void go() {
+        // INSERT CODE HERE;
+    }
+
+    public int doStuff() {
+        return 0;
+    }
+}
+```
+
+Which line(s) of code, inserted independently at // INSERT CODE HERE, will allow the code to compile?
+
+A: 
+
+```
+System.out.println("class: " + doStuff());
+System.out.println("iface: " + MyInterface.super.doStuff());
+```
+
+The second line of code is the correct syntax to invoke the interface's overloaded `default` method.
+
+Another code that can compile:
+
+```java
+interface MyInterface {
+    static int doStuff() {
+        return 0;
+    }
+}
+
+class IfaceTest implements MyInterface {
+    public static void main (String[] args) {
+        new IfaceTest().go();
+    }
+
+    void go() {
+        // INSERT CODE HERE;
+        System.out.println("class: " + doStuff());
+        System.out.println("iface: " + MyInterface.doStuff());
+    }
+
+    public int doStuff() {
+        return 0;
+    }
+}
+```
+
