@@ -1,18 +1,20 @@
-### Object Orientation
+## Object Orientation
 
-##### Encapsulation, IS-A, HAS-A
+### 1 Key points
+
+##### 1.1 Encapsulation, IS-A, HAS-A
 
 - [ ] IS-A refers to inheritance or implementation
 - [ ] IS-A is expressed with the keyword `extends` or `implements`
 - [ ] HAS-A means an instance of one class "has a" reference to an instance of another class or another instance of the same class
 
-##### Polymorphism
+##### 1.2 Polymorphism
 
 - [ ] A reference variable is always of a single, unchangeable type, but it can refer to a subtype object
 - [ ] A single object can be referenced to by reference variables of many different types--as long as they are the same type or supertype of the object
 - [ ] The reference variable's type (not the object's type) determines which method can be called
 
-##### Overriding and Overloading
+##### 1.3 Overriding and Overloading
 
 - [ ] Constructors can be overloaded but not overridden
 - [ ] With respect to the method it overrides, the overriding method
@@ -34,7 +36,7 @@
 - [ ] Object type determines which overridden method is used at runtime
 - [ ] Reference type determines which overloaded method will be used at compile time
 
-##### Reference Variable Casting
+##### 1.4 Reference Variable Casting
 
 - [ ] Downcasting means casting down the inheritance tree to a more specific type
 - [ ] Before trying the downcast, do an `instanceof` test to make sure
@@ -43,13 +45,13 @@
 - [ ] Upcasting works implicitly because when doing upcasting, the number of methods which can be invoked are implicitly restricted
 - [ ] Upcasting is an inherently safe operation because the assignment restricts the access capabilities of the new variable
 
-##### Return Types
+##### 1.5 Return Types
 
 - [ ] Overloaded methods can change return types, overridden methods cannot, except in the case of covariant returns
 - [ ] Methods with an object reference return type can return a subtype
 - [ ] Methods with an interface return type can return any implementer
 
-##### Constructors and Instantiation
+##### 1.6 Constructors and Instantiation
 
 - [ ] The default constructor is a no-arg constructor with a no-arg call to *super()*
 - [ ] The first statement of every constructor must be a call either to *this()* (an overloaded constructor) or to *super()*
@@ -62,19 +64,19 @@
 - [ ] Constructors can call constructors, but one of them must call *super()* or the stack will explode
 - [ ] Call to *this()* and *super()* cannot be in the same constructor
 
-##### Initialization Blocks
+##### 1.7 Initialization Blocks
 
 - [ ] *init* blocks execute in the order in which they appear
 - [ ] Static *init* blocks run once, when the class is first loaded
 - [ ] Instance *init* blocks run every time a class instance is created
 - [ ] Instance *init* blocks run after the constructor's call to *super()*
 
-##### statics
+##### 1.8 statics
 
 - [ ] Use the dot operator to access `static` members, but remember that using a reference variable with the dot operator is really a  syntax trick, and the compiler will substitute the class name for the reference variable
 - [ ] `static` methods cannot be overridden, but they can be redefined
 
-### Test
+### 2 Test
 
 ##### Q1
 

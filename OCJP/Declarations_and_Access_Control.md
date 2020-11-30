@@ -1,6 +1,8 @@
-### Declarations and Access Control
+## Declarations and Access Control
 
-##### Java Features and Benefits
+### 1 Key points
+
+##### 1.1 Java Features and Benefits
 
 - [ ] OO
 - [ ] Encapsulation
@@ -12,7 +14,7 @@
 - [ ] Multithreading
 - [ ] Distributed computing
 
-##### Class Modifiers (Nonaccess)
+##### 1.2 Class Modifiers (Nonaccess)
 
 - [ ] Classes can be modified with `final`, `abstract`, or `strictfp`
 
@@ -20,7 +22,7 @@
 
 - [ ] An abstract class can have both `abstract` and nonabstract methods
 
-##### Interface Implementation
+##### 1.3 Interface Implementation
 
 - [ ] Usually, interfaces are contracts for what a class can do, but they say nothing about the way in which the class must do it
 
@@ -50,7 +52,7 @@
 
 - [ ] A class implementing an interface can itself be `abstract`
 
-##### Member Access Modifiers
+##### 1.4 Member Access Modifiers
 
 - [ ] `private` members are not visible to subclasses, so `private` members cannot be inherited
 - [ ] Default members can be accessed only by classes in the same package
@@ -58,7 +60,7 @@
 - [ ] A subclass outside the package cannot access a `protected` member by using a reference to a superclass instance (the `protected` member can only be accessed through inheritance)
 - [ ] A `protected` member inherited by a subclass from another package is not accessible to any other class in the subclass package, except for the subclass's own subclasses
 
-##### Other Modifiers
+##### 1.5 Other Modifiers
 
 - [ ] The `synchronized` modifier applies only to methods and code blocks.
 - [ ] `synchronized` methods can have any access control and can also be marked `final`
@@ -66,7 +68,7 @@
 - [ ] The `native` modifier applies only to methods
 - [ ] The `strictfp` modifier applies only to methods and classes
 
-##### Variable Declarations
+##### 1.6 Variable Declarations
 
 - [ ] Instance variables can have any access control, and can be marked `final` or `transient`
 - [ ] Instance variables can't be `abstract`, `synchronized`, `native` or `strictfp`
@@ -76,7 +78,7 @@
 - [ ] The `volatile` and `transient` modifier applies only to instance variables
 - [ ] An array of objects can hold any object that passes the IS-A (or `instanceof`) test for the declared type of the array. For example, if `Horse` extends `Animal`, then a `Horse` object can go into an `Animal` array.
 
-##### enums
+##### 1.7 enums
 
 - [ ] An `enum` can be declared inside or outside a class, but not in a method
 - [ ] An `enum` declared outside the class cannot be marked static, final, abstract, protected or private
